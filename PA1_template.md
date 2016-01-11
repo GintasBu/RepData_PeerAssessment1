@@ -39,19 +39,29 @@ hist(stepsums)
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
-3a. Calculating mean value per day (previously calculated to be 10766.1886792453:
+3a. Calculating mean value per day:
 
 ```r
 meanperday<-mean(stepsums, na.rm = TRUE)
+meanperday
 ```
-3b. Calculating meadian value per day (previously calculated to be 10765:
+
+```
+## [1] 10766.19
+```
+3b. Calculating meadian value per day:
 
 ```r
 medianperday<-median(stepsums, na.rm = TRUE)
+medianperday
+```
+
+```
+## [1] 10765
 ```
 
 
-What is the average daily activity patter?
+What is the average daily activity pattern?
 
 i. averaging number of steps for specific 5 min time interval across different days:
 
@@ -75,25 +85,45 @@ which 5-minute inerval has max number of steps (previous run gave it 835):
 
 ```r
 interval_with_max_steps<-names(which.max(stepmeans))
+interval_with_max_steps
+```
+
+```
+## [1] "835"
 ```
 
 Reporting and inputing missing values.
 1. Total missing values:
-  in date column (0 NA's):
+  in date column:
 
 ```r
 missingdates<-sum(is.na(acdata$date))
+missingdates
 ```
-  in time interval column (0 NA's):
+
+```
+## [1] 0
+```
+  in time interval column:
 
 ```r
 missingintervals<-sum(is.na(acdata$interval))
+missingintervals
 ```
-  in steps column (2304 NAs):
+
+```
+## [1] 0
+```
+  in steps column:
   
 
 ```r
 total_missing_steps<-sum(is.na(acdata$steps))
+total_missing_steps
+```
+
+```
+## [1] 2304
 ```
 
 2&3. replacing NA's with average value for that interval from stepmeans. new steps variable is called fixxingsteps. 
@@ -122,10 +152,23 @@ hist(stepsums, main="Histogram of steps with corrected NA values")
 
 ```r
 meanperdayfixedsteps<-mean(stepsumsf, na.rm = TRUE)
-medianperdayfixedsteps<-median(stepsumsf, na.rm = TRUE)
+meanperdayfixedsteps
 ```
 
-After substituting NA's with their corresponding average values for that time itnerval, mean value has not change, median value min change from 10765 to 10766.
+```
+## [1] 10766.19
+```
+
+```r
+medianperdayfixedsteps<-median(stepsumsf, na.rm = TRUE)
+medianperdayfixedsteps
+```
+
+```
+## [1] 10766.19
+```
+
+After substituting NA's with their corresponding average values for that time itnerval, values did not change.
 
 weekday-weekend differences:
 
